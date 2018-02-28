@@ -19,6 +19,17 @@ module.exports = {
 
       td.verify(pdf.toFile(pdfFilePath))
       done()
+    },
+
+    async url(done) {
+      const url          = "https://google.com"
+      const pdfGenerator = new Pdf()
+
+      let pdfFilePath = await pdfGenerator.generate(url)
+      assert(pdfFilePath.match(/\.pdf$/))
+
+      td.verify(pdf.toFile(pdfFilePath))
+      done()
     }
   }
 }
