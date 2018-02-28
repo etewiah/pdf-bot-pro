@@ -1,0 +1,35 @@
+{
+  "name": "pdf-bot-pro",
+  "version": "0.0.1",
+  "description": "A horizontally scalable HTML to PDF converter powered by Google Chrome",
+  "main": "app.js",
+  "scripts": {
+    "test": "teenytest test/**/**/*-test.js --helper test/helper.js && ./node_modules/.bin/eslint *.js, **/**.js"
+  },
+  "keywords": [
+    "pdf",
+    "chrome",
+    "html2pdf",
+    "pdf-bot"
+  ],
+  "author": "Daniel Westendorf",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "eslint": "^4.18.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "node-fetch": "^2.0.0",
+    "teenytest": "^5.1.1",
+    "testdouble": "^3.5.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "debug": "^3.1.0",
+    "express": "^4.16.2",
+    "html-pdf-chrome": "^0.4.3",
+    "tmp": "0.0.33"
+  }
+}
