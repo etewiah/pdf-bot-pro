@@ -15,7 +15,11 @@ module.exports = {
 
     server = spawn('node', ['web.js'], { env: newEnv })
     server.stdout.on('data', (data) => {
-      if (`${data}`.match('Listening')) done()
+      if (`${data}`.match('Listening')) {
+        done()
+      } else {
+        console.log(data.toString())
+      }
     })
   },
 
@@ -29,7 +33,11 @@ module.exports = {
         async beforeEach(done) {
           this.response = await fetch(`http://localhost:${port}/api`, {
             method:  'POST',
-            headers: { 'Authorization': `Bearer ${token}` }
+            body:    JSON.stringify({ url: 'http://google.com' }),
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type':  'application/json'
+            }
           })
 
           this.json = await this.response.json()
@@ -61,11 +69,11 @@ module.exports = {
         },
 
         setsErrorCode() {
-          assert.equal(this.json.error, '100')
+          assert.equal(this.json.errors[0].error, '100')
         },
 
         setsErrorMessage() {
-          assert(this.json.message.match('Invalid API'))
+          assert(this.json.errors[0].message.match('Invalid API'))
         }
       }
     }
