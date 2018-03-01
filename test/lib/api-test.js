@@ -18,16 +18,17 @@ module.exports = {
       });
 
       td.when(this.fakeReq.get('Authorization')).thenReturn('1234')
+      td.when(this.fakeReq.get('Content-Type')).thenReturn('application/json')
       td.when(this.fakeRes.status(201)).thenReturn(this.fakeJson)
     },
 
-    validAPIToken() {
+    validRequest() {
       new Api({ token: '1234' }).create(this.fakeReq, this.fakeRes);
 
       td.verify(this.fakeJson.json({ id: td.matchers.isA(String) }))
     },
 
-    invalidAPIToken() {
+    invalidApiToken() {
       td.when(this.fakeReq.get('Authorization')).thenReturn('1234')
       td.when(this.fakeRes.status(401)).thenReturn(this.fakeJson)
 
@@ -38,6 +39,17 @@ module.exports = {
       ))
     },
 
+    invalidContentType() {
+      td.when(this.fakeReq.get('Content-Type')).thenReturn('text/html')
+      td.when(this.fakeRes.status(401)).thenReturn(this.fakeJson)
+
+      new Api({ token: '1234' }).create(this.fakeReq, this.fakeRes);
+
+      td.verify(this.fakeJson.json(
+        td.matchers.contains({ errors: [{ error: 101, message: 'Invalid Content-Type, must be application/json' }] })
+      ))
+    },
+
     invalidUrl() {
       this.fakeReq.body = { url: 'blah' }
       td.when(this.fakeRes.status(401)).thenReturn(this.fakeJson)
@@ -45,7 +57,7 @@ module.exports = {
       new Api({ token: '1234' }).create(this.fakeReq, this.fakeRes);
 
       td.verify(this.fakeJson.json(
-        td.matchers.contains({ errors: [{ error: 102, message: 'Invalid url Payload' }] })
+        td.matchers.contains({ errors: [{ error: 200, message: 'Invalid url Payload' }] })
       ))
     }
   }
