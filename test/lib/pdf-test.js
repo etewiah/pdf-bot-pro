@@ -1,10 +1,12 @@
 const assert  = require('assert')
-const htmlPdf = td.replace('html-pdf-chrome')
-const pdf     = td.object('toFile')
-const Pdf     = require('../../lib/pdf')
+let htmlPdf, pdf, Pdf
 
 module.exports = {
   beforeEach() {
+    htmlPdf = td.replace('html-pdf-chrome')
+    pdf     = td.object('toFile')
+    Pdf     = require('../../lib/pdf')
+
     td.when(htmlPdf.create(td.matchers.isA(String), td.matchers.anything()))
       .thenResolve(pdf)
   },

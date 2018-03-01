@@ -1,7 +1,7 @@
 const assert  = require('assert')
 const crypto  = require('crypto')
-const fetch   = td.replace('node-fetch')
-const Webhook = require('../../lib/webhook')
+
+let fetch, Webhook
 
 const options = {
   webhookUrl:    'abc',
@@ -9,6 +9,11 @@ const options = {
 }
 
 module.exports = {
+  beforeEach() {
+    fetch   = td.replace('node-fetch')
+    Webhook = require('../../lib/webhook')
+  },
+
   requiresWebhookUrl() {
     assert.throws(() => {
       new Webhook();
