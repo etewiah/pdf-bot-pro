@@ -1,5 +1,5 @@
-const assert  = require('assert')
-const Api     = require('../../lib/api')
+const assert = require('assert')
+const Api    = require('../../lib/api')
 
 module.exports = {
   throwsWithNoToken() {
@@ -22,10 +22,18 @@ module.exports = {
       td.when(this.fakeRes.status(201)).thenReturn(this.fakeJson)
     },
 
-    validRequest() {
-      new Api({ token: '1234' }).create(this.fakeReq, this.fakeRes);
+    async validRequest() {
+      await new Api({ token: '1234' }).create(this.fakeReq, this.fakeRes);
 
       td.verify(this.fakeJson.json({ id: td.matchers.isA(String) }))
+      td.verify(faktoryClient.push(td.matchers.contains({ jobtype: 'Generate' })))
+    },
+
+    async serverUnavailable() {
+      td.when(faktoryWorker.connect()).thenReject('boom')
+      td.when(this.fakeRes.status(500)).thenReturn(td.object('send'))
+
+      await new Api({ token: '1234' }).create(this.fakeReq, this.fakeRes);
     },
 
     invalidApiToken() {
@@ -51,7 +59,7 @@ module.exports = {
     },
 
     invalidUrl() {
-      this.fakeReq.body = { url: 'blah' }
+      this.fakeReq.body = { url: null }
       td.when(this.fakeRes.status(401)).thenReturn(this.fakeJson)
 
       new Api({ token: '1234' }).create(this.fakeReq, this.fakeRes);

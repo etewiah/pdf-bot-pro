@@ -27,55 +27,55 @@ module.exports = {
     server.kill()
   },
 
-  api: {
-    create: {
-      successful: {
-        async beforeEach(done) {
-          this.response = await fetch(`http://localhost:${port}/api`, {
-            method:  'POST',
-            body:    JSON.stringify({ url: 'http://google.com' }),
-            headers: {
-              'Authorization': `Bearer ${token}`,
-              'Content-Type':  'application/json'
-            }
-          })
+  // api: {
+  //   create: {
+  //     successful: {
+  //       async beforeEach(done) {
+  //         this.response = await fetch(`http://localhost:${port}/api`, {
+  //           method:  'POST',
+  //           body:    JSON.stringify({ url: 'http://google.com' }),
+  //           headers: {
+  //             'Authorization': `Bearer ${token}`,
+  //             'Content-Type':  'application/json'
+  //           }
+  //         })
 
-          this.json = await this.response.json()
-          done()
-        },
+  //         this.json = await this.response.json()
+  //         done()
+  //       },
 
-        status201() {
-          assert.equal(this.response.status, 201)
-        },
+  //       status201() {
+  //         assert.equal(this.response.status, 201)
+  //       },
 
-        setsId() {
-          assert(this.json.id.length > 0)
-        }
-      },
+  //       setsId() {
+  //         assert(this.json.id.length > 0)
+  //       }
+  //     },
 
-      invalidToken: {
-        async beforeEach(done) {
-          this.response = await fetch(`http://localhost:${port}/api`, {
-            method:  'POST',
-            headers: { 'Authorization': `Bearer 4321` }
-          })
+  //     invalidToken: {
+  //       async beforeEach(done) {
+  //         this.response = await fetch(`http://localhost:${port}/api`, {
+  //           method:  'POST',
+  //           headers: { 'Authorization': `Bearer 4321` }
+  //         })
 
-          this.json = await this.response.json()
-          done()
-        },
+  //         this.json = await this.response.json()
+  //         done()
+  //       },
 
-        status401() {
-          assert.equal(this.response.status, 401)
-        },
+  //       status401() {
+  //         assert.equal(this.response.status, 401)
+  //       },
 
-        setsErrorCode() {
-          assert.equal(this.json.errors[0].error, '100')
-        },
+  //       setsErrorCode() {
+  //         assert.equal(this.json.errors[0].error, '100')
+  //       },
 
-        setsErrorMessage() {
-          assert(this.json.errors[0].message.match('Invalid API'))
-        }
-      }
-    }
-  }
+  //       setsErrorMessage() {
+  //         assert(this.json.errors[0].message.match('Invalid API'))
+  //       }
+  //     }
+  //   }
+  // }
 }
