@@ -25,7 +25,7 @@ module.exports = {
     async validRequest() {
       await new Api({ token: '1234' }).create(this.fakeReq, this.fakeRes);
 
-      td.verify(this.fakeJson.json({ id: td.matchers.isA(String) }))
+      td.verify(this.fakeJson.json({ jobId: td.matchers.isA(String) }))
       td.verify(faktoryClient.push(td.matchers.contains({ jobtype: 'Generate' })))
     },
 
