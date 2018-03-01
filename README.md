@@ -145,3 +145,9 @@ Set the Environment/Heroku Config Vars
 
 
 Set `DEBUG` Config var to `pdf-bot-pro:*` to get debugged output.
+
+
+### Run Tests
+
+`$ bin/faktory`
+`$ npm test`

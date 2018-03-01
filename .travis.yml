@@ -1,5 +1,14 @@
 language: node_js
 node_js:
   - "node"
+services:
+  - docker
+before_script:
+  - ./bin/faktory -d
+  - |
+    until nc -z -v -w30 127.0.0.1 7419
+    do
+      sleep 1
+    done
 script:
 - npm test
