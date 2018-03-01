@@ -9,7 +9,7 @@ faktory.register('Generate', async (details) => {
   log(`Starting generation job: ${details.id}`)
 
   log(`Starting pdf generation: ${details.id}`)
-  const filePath = await new Pdf().generate(details.url)
+  const filePath = await new Pdf(details).generate(details.url)
 
   log(`Starting S3 upload: ${details.id}`)
   const s3ObjectDetails = await new S3({

@@ -4,7 +4,7 @@
   "description": "A horizontally scalable HTML to PDF converter powered by Google Chrome",
   "main": "app.js",
   "scripts": {
-    "test": "teenytest test/**/**/*-test.js --helper test/helper.js && ./node_modules/.bin/eslint *.js, **/**.js"
+    "test": "teenytest 'test/**/*-test.js' --helper test/helper.js && ./node_modules/.bin/eslint *.js, **/**.js"
   },
   "keywords": [
     "pdf",
