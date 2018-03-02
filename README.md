@@ -1,5 +1,6 @@
 # pdf-bot-pro: HTML to PDF generation
 ### Horizontally scalable deployment of a pdf-bot
+[![Build Status](https://travis-ci.org/danielwestendorf/pdf-bot-pro.svg?branch=master)](https://travis-ci.org/esbenp/pdf-bot) [![Coverage Status](https://coveralls.io/repos/github/danielwestendorf/pdf-bot-pro/badge.svg?branch=master)](https://coveralls.io/github/danielwestendorf/pdf-bot-pro?branch=master)
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
@@ -29,7 +30,7 @@ The only required JSON attribute is the URL you wish to encode. You can (and sho
   {
     "url":      "https://github.com/danielwestendorf/pdf-bot-pro",
     "filename": "pdf-bot-pro.pdf",
-    "id":      1234,
+    "id":       1234,
     "account":  "PDFGeneration-R-Us",
     "foo":      "bar"
   }
@@ -43,7 +44,7 @@ You might be rendering a Javascript heavy page, so it's helpful to let `pdf-bot-
 ```json
   {
     "url":     "https://github.com/danielwestendorf/pdf-bot-pro",
-    "timeout": 1000 # Default: 5000
+    "timeout": 1000 // Default: 5000
   }
 ```
 
@@ -51,8 +52,8 @@ You might be rendering a Javascript heavy page, so it's helpful to let `pdf-bot-
 ```json
   {
     "url":      "https://github.com/danielwestendorf/pdf-bot-pro",
-    "variable": "foo", # Default: pdfBotPro
-    "timeout":  1000   # Default: 5000
+    "variable": "foo", // Default: pdfBotPro
+    "timeout":  1000   // Default: 5000
   }
 ```
 
@@ -60,9 +61,9 @@ You might be rendering a Javascript heavy page, so it's helpful to let `pdf-bot-
 ```json
   {
     "url":     "https://github.com/danielwestendorf/pdf-bot-pro",
-    "element": "div#foo", # Default: document
-    "event":   "bar",     # Default: load
-    "timeout": 1000       # Default: 5000
+    "element": "div#foo", // Default: document
+    "event":   "bar",     // Default: load
+    "timeout": 1000       // Default: 5000
   }
 ```
 
@@ -71,8 +72,8 @@ You might be rendering a Javascript heavy page, so it's helpful to let `pdf-bot-
 ```json
   {
     "url":      "https://github.com/danielwestendorf/pdf-bot-pro",
-    "element": "div#foo", # Default: footer
-    "timeout":  1000      # Default: 5000
+    "element":  "div#foo", // Default: footer
+    "timeout":  1000      // Default: 5000
   }
 ```
 
@@ -80,8 +81,8 @@ You might be rendering a Javascript heavy page, so it's helpful to let `pdf-bot-
 ```json
   {
     "url":      "https://github.com/danielwestendorf/pdf-bot-pro",
-    "callback": "foo", # Default: pdfBotPro
-    "timeout":  1000   # Default: 5000
+    "callback": "foo", // Default: pdfBotPro
+    "timeout":  1000   // Default: 5000
   }
 ```
 

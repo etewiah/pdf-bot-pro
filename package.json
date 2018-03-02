@@ -4,7 +4,7 @@
   "description": "A horizontally scalable HTML to PDF converter powered by Google Chrome",
   "main": "app.js",
   "scripts": {
-    "test": "teenytest 'test/**/*-test.js' --helper test/helper.js && ./node_modules/.bin/eslint *.js, **/**.js"
+    "test": "nyc --reporter=lcov --reporter=text -- teenytest 'test/**/*-test.js' --helper test/helper.js && ./node_modules/.bin/eslint *.js, **/**.js"
   },
   "keywords": [
     "pdf",
@@ -15,13 +15,16 @@
   "author": "Daniel Westendorf",
   "license": "GPL-3.0",
   "devDependencies": {
+    "coveralls": "^3.0.0",
     "eslint": "^4.18.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
+    "istanbul": "^0.4.5",
     "node-fetch": "^2.0.0",
+    "nyc": "^11.4.1",
     "teenytest": "^5.1.1",
     "testdouble": "^3.5.2"
   },

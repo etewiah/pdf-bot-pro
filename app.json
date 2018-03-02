@@ -51,7 +51,7 @@
     }
   },
   "addons": [
-    "ackfoundry"
+    "ackfoundry:test"
   ],
   "image": "heroku/nodejs",
   "buildpacks": [

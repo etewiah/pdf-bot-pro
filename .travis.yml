@@ -12,3 +12,5 @@ before_script:
     done
 script:
 - npm test
+after_success:
+- cat ./node_modules/lcov.info | ./node_modules/coveralls/bin/coveralls.js

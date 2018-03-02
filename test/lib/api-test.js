@@ -5,7 +5,7 @@ module.exports = {
   throwsWithNoToken() {
     assert.throws(() => {
       new Api();
-    }, /No API Token/)
+    }, /No API Token specified/)
   },
 
   create: {
