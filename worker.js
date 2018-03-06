@@ -25,7 +25,8 @@ faktory.register('Generate', async (details) => {
   log(`Starting generation job: ${details.id}`)
   await faktoryClient.push({
     jobtype: 'Webhook',
-    args:    [Object.assign(details, s3ObjectDetails)]
+    args:    [Object.assign(details, s3ObjectDetails)],
+    retry:   25
   })
 
   faktoryClient.close()
@@ -39,5 +40,7 @@ faktory.register('Webhook', async(details) => {
     webhookSecret: process.env.WEBHOOK_SECRET
   }).send(details)
 })
+
+console.log('Waiting for work....')
 
 faktory.work();
